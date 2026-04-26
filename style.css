@@ -62,7 +62,7 @@ body {
     top: 0;
     z-index: 100;
     background-color: var(--bg-color);
-    border-bottom: 1px solid var(--border-color); /* Línea sutil para separar del contenido */
+    border-bottom: 1px solid var(--border-color); 
 }
 .nav-brand {
     font-weight: 600;
@@ -95,12 +95,11 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* Para el efecto overlap, el fondo debe ser transparente y el z-index bajo */
     z-index: 0;
 }
 .hero-content {
     text-align: center;
-    position: fixed; /* Se queda fijo mientras hacemos scroll */
+    position: fixed; 
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -113,16 +112,16 @@ body {
     line-height: 1.1;
     letter-spacing: -2px;
     cursor: default;
-    user-select: none; /* No se puede seleccionar */
+    user-select: none; 
     -webkit-user-select: none;
-    transition: filter 0.1s ease-out, opacity 0.1s ease-out; /* Suavizar el blur */
+    transition: filter 0.1s ease-out, opacity 0.1s ease-out; 
 }
 .hero-subtitle {
     margin-top: 1rem;
     font-size: 1rem;
     letter-spacing: 2px;
     color: var(--text-muted);
-    user-select: none; /* No se puede seleccionar */
+    user-select: none; 
     -webkit-user-select: none;
     transition: filter 0.1s ease-out, opacity 0.1s ease-out;
 }
@@ -144,15 +143,15 @@ body {
     object-fit: cover;
     transform: translate(-50%, -50%);
     opacity: 0;
-    /* Las transiciones ahora se controlan desde script.js para que la entrada y salida tengan velocidades diferentes */
+    
 }
 
 /* General Section */
 .section {
     padding: 6rem 4rem;
-    background-color: var(--bg-color); /* Fondo sólido para tapar el hero */
+    background-color: var(--bg-color); 
     position: relative;
-    z-index: 2; /* Sobre el hero fijo */
+    z-index: 2; 
 }
 .section-header {
     display: flex;
@@ -323,7 +322,7 @@ body {
     object-fit: cover;
 }
 
-/* Footer / Get in Touch */
+/* Footer */
 .footer {
     padding: 6rem 4rem 4rem 4rem;
     background-color: var(--bg-color);
@@ -465,7 +464,7 @@ body {
         flex-wrap: wrap;
     }
     .nav-links {
-        display: none; /* Can be changed to a hamburger menu later */
+        display: none; 
     }
     .hero-title {
         font-size: 12vw;
@@ -499,5 +498,5 @@ body {
     display: block;
 }
 @media (max-width: 768px) {
-    /* No se requiere cambio para mobile ya que es columna por defecto */
+    
 }
