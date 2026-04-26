@@ -1,0 +1,503 @@
+:root {
+    --bg-color: #0c0c0c;
+    --text-main: #ffffff;
+    --text-muted: #9ca3af;
+    --border-color: #27272a;
+    --card-bg: #111111;
+    --font-main: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+}
+
+body {
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+.loader {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+.preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color); /* Línea sutil para separar del contenido */
+}
+.nav-brand {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+.nav-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: opacity 0.3s;
+}
+.nav-links a:hover {
+    opacity: 0.6;
+}
+.nav-time {
+    font-size: 0.9rem;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* Para el efecto overlap, el fondo debe ser transparente y el z-index bajo */
+    z-index: 0;
+}
+.hero-content {
+    text-align: center;
+    position: fixed; /* Se queda fijo mientras hacemos scroll */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 0;
+}
+.hero-title {
+    font-size: 8vw;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    cursor: default;
+    user-select: none; /* No se puede seleccionar */
+    -webkit-user-select: none;
+    transition: filter 0.1s ease-out, opacity 0.1s ease-out; /* Suavizar el blur */
+}
+.hero-subtitle {
+    margin-top: 1rem;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    user-select: none; /* No se puede seleccionar */
+    -webkit-user-select: none;
+    transition: filter 0.1s ease-out, opacity 0.1s ease-out;
+}
+
+/* Mouse Trail Images */
+#trail-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+.trail-img {
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    /* Las transiciones ahora se controlan desde script.js para que la entrada y salida tengan velocidades diferentes */
+}
+
+/* General Section */
+.section {
+    padding: 6rem 4rem;
+    background-color: var(--bg-color); /* Fondo sólido para tapar el hero */
+    position: relative;
+    z-index: 2; /* Sobre el hero fijo */
+}
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+.section-header h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: -1px;
+}
+.see-all {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 2px;
+}
+
+/* Works Grid */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+}
+.work-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.work-image {
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background-color: var(--card-bg);
+}
+.work-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.work-card:hover .work-image img {
+    transform: scale(1.05);
+}
+.work-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.work-info p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background-color: var(--border-color);
+    border: 1px solid var(--border-color);
+}
+.service-card {
+    position: relative;
+    height: 600px;
+    background-color: var(--card-bg);
+    overflow: hidden;
+    cursor: pointer;
+}
+.service-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.service-placeholder {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: #1a1a1a;
+}
+.service-card:hover .service-bg {
+    opacity: 0.1;
+    transform: scale(1.05);
+}
+.service-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.service-header h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.icon {
+    font-size: 1.5rem;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+}
+.service-desc {
+    margin-top: auto;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.service-card:hover .service-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+.service-card:hover .icon {
+    transform: rotate(45deg);
+}
+
+/* About Section */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+.about-title {
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 4rem;
+}
+.about-row {
+    display: flex;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+.about-label {
+    flex: 0 0 200px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+.about-desc {
+    flex: 1;
+    font-size: 1.2rem;
+    max-width: 600px;
+}
+.about-image {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    filter: grayscale(100%);
+    object-fit: cover;
+}
+
+/* Footer / Get in Touch */
+.footer {
+    padding: 6rem 4rem 4rem 4rem;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--border-color);
+}
+.footer-title {
+    font-size: 4vw;
+    font-weight: 600;
+    margin-bottom: 4rem;
+    letter-spacing: -1px;
+}
+.footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+.footer-links a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: opacity 0.3s;
+}
+.footer-links a:hover {
+    opacity: 0.6;
+}
+
+/* Animaciones Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1), transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Project Detail Pages --- */
+.project-hero {
+    padding: 10rem 4rem 2rem 4rem;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 2;
+}
+.project-title {
+    font-size: 6vw;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1;
+    letter-spacing: -2px;
+}
+.project-subtitle {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+}
+.project-hero-image {
+    width: 100%;
+    background: var(--bg-color);
+}
+.project-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.project-details {
+    padding: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 2;
+}
+.project-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+.meta-item .meta-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+.meta-item .meta-value {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+.project-info .info-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+}
+.project-info p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+.project-link {
+    color: var(--text-main);
+    text-decoration: none;
+    border-bottom: 1px solid var(--text-main);
+    padding-bottom: 2px;
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .works-grid {
+        grid-template-columns: 1fr;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-row {
+        flex-direction: column;
+    }
+    .about-label {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1.5rem 2rem;
+        flex-wrap: wrap;
+    }
+    .nav-links {
+        display: none; /* Can be changed to a hamburger menu later */
+    }
+    .hero-title {
+        font-size: 12vw;
+    }
+    .section {
+        padding: 4rem 2rem;
+    }
+    .work-image {
+        height: 400px;
+    }
+    .project-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Galería de imágenes del proyecto */
+.project-gallery {
+    padding: 0 4rem 4rem 4rem;
+    background-color: var(--bg-color);
+    position: relative;
+    z-index: 2;
+}
+.gallery-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+@media (max-width: 768px) {
+    /* No se requiere cambio para mobile ya que es columna por defecto */
+}
